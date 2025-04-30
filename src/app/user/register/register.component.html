@@ -1,0 +1,64 @@
+
+<div class="bg-[#faf9f5] flex items-center justify-center min-h-screen pt-5 pb-5">
+    <div class="bg-white shadow-md rounded-2xl p-8 w-full max-w-md">
+      <h1 class="text-4xl font-bold text-[#3a2c1d] mb-6" style="font-family: 'Playfair Display', serif;">
+        Welcome to Oasis Cafe
+      </h1>
+      
+      
+  
+      <div class="flex mb-6">
+        <button class="w-1/2 py-2 text-gray-600 bg-gray-100 rounded-l-lg" (click)="switchMode('login')">Login</button> 
+        <button class="w-1/2 py-2 text-gray-600  bg-gray-100 rounded-r-lg" (click)="switchMode('register')">Register</button>
+      </div>
+  
+      <form (ngSubmit)="onSubmit()" class="space-y-4" #registerForm="ngForm">
+        <div>
+          <label class="block text-gray-700">Full Name</label>
+          <input name="fullName" ngModel type="text" placeholder=""
+            class="w-full mt-1 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#c57c37]">
+        </div>
+  
+        <div>
+          <label class="block text-gray-700">Email</label>
+          <input name="email" ngModel type="email" placeholder=""
+            class="w-full mt-1 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#c57c37]">
+        </div>
+  
+        <div>
+          <label class="block text-gray-700">Password</label>
+          <input name="password" ngModel type="password" placeholder=""
+            class="w-full mt-1 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#c57c37]">
+        </div>
+  
+        <div>
+          <label class="block text-gray-700">Select Role</label>
+          <select name="role" ngModel class="w-full mt-1 p-2 border rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-[#c57c37]">
+            <option value="">Select Role</option>
+            <option value="user">User</option>
+            <option value="admin">Admin</option>
+          </select>
+        </div>
+  
+        <div class="flex items-center">
+          <input id="newsletter" name="newsletter" ngModel type="checkbox" class="w-4 h-4 text-[#c57c37] focus:ring-[#c57c37] border-gray-300 rounded">
+          <label for="newsletter" class="ml-2 text-gray-700 text-sm">Subscribe to newsletter</label>
+        </div>
+  
+        <button type="submit" class="w-full bg-[#944b0f] text-white py-2 rounded-lg hover:bg-[#7a3c0d] transition">
+          Create Account
+        </button>
+  
+        <p class="text-center text-sm mt-4 text-gray-600">
+          Already have an account? <a href="#" class="text-[#944b0f] font-semibold">Login</a>
+        </p>
+  
+        <div class="border-t my-4"></div>
+  
+        <button type="button" class="w-full border border-[#944b0f] text-[#944b0f] py-2 rounded-lg hover:bg-[#944b0f] hover:text-white transition">
+          Continue as Guest
+        </button>
+      </form>
+    </div>
+  </div>
+  

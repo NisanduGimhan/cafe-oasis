@@ -1,0 +1,109 @@
+<div class="p-6">
+    <div class="flex justify-between items-center mb-6">
+      <h1 class="text-2xl font-bold">Product Management</h1>
+      <button (click)="openAddProduct()" class="bg-amber-700 hover:bg-amber-800 text-white font-bold py-2 px-4 rounded flex items-center">
+        + Add Product
+      </button>
+    </div>
+  
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div *ngFor="let product of products" class="border rounded-lg p-4 hover:shadow-lg transition flex flex-col justify-between">
+        
+        <!-- Image -->
+        <img [src]="product.imageUrl || 'https://via.placeholder.com/150'" alt="{{product.name}}" class="w-full h-48 object-cover rounded mb-4">
+  
+        <!-- Status Badges -->
+        <div class="flex gap-2 mb-2">
+          <span *ngIf="product.available" class="bg-green-500 text-white text-xs px-2 py-1 rounded-full">Available</span>
+          <span *ngIf="product.featured" class="bg-amber-500 text-white text-xs px-2 py-1 rounded-full">Featured</span>
+        </div>
+  
+        <!-- Text Details -->
+        <p class="text-xs text-gray-500 uppercase">{{ product.itemType }}</p>
+        <h2 class="font-semibold text-lg">{{ product.name }}</h2>
+        <p class="text-sm text-gray-600 mt-1">{{ product.itemNo }}</p>
+  
+        <div class="mt-4 flex items-center justify-between">
+          <span class="font-bold text-amber-700">Rs {{ product.price.toFixed(2) }}</span>
+  
+          <!-- Action Buttons -->
+          <div class="flex gap-2">
+            <button (click)="openEditProduct(product)" class="text-sm px-3 py-1 border border-gray-300 rounded hover:bg-gray-100">
+              ✏️ Edit
+            </button>
+            <button (click)="deleteProduct(product.id)" class="text-sm px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600">
+              🗑️
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Modal for Add/Edit -->
+    <div *ngIf="showModal" class="fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center z-50">
+      <div class="bg-white rounded-lg shadow-lg w-full max-w-2xl p-8 relative">
+        <button (click)="cancelEdit()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-2xl">
+          ✖
+        </button>
+  
+        <h2 class="text-2xl font-bold text-gray-800 mb-6">{{ isEditing ? 'Edit' : 'Add' }} Product</h2>
+  
+        <form (ngSubmit)="saveProduct()" class="space-y-6">
+          <div>
+            <label class="block text-sm font-semibold mb-1 text-gray-700">Product Name</label>
+            <input type="text" [(ngModel)]="editingProduct.name" name="name" required
+              class="w-full border rounded-md px-3 py-2 text-gray-700 focus:outline-none focus:ring-2 focus:ring-amber-700">
+          </div>
+  
+          <div class="flex space-x-4">
+            <div class="flex-1">
+              <label class="block text-sm font-semibold mb-1 text-gray-700">Price</label>
+              <input type="number" [(ngModel)]="editingProduct.price" name="price" required
+                class="w-full border rounded-md px-3 py-2 text-gray-700 focus:outline-none focus:ring-2 focus:ring-amber-700">
+            </div>
+            <div class="flex-1">
+              <label class="block text-sm font-semibold mb-1 text-gray-700">Category</label>
+              <input type="text" [(ngModel)]="editingProduct.itemType" name="type" required
+                class="w-full border rounded-md px-3 py-2 text-gray-700 focus:outline-none focus:ring-2 focus:ring-amber-700">
+            </div>
+          </div>
+  
+          <div>
+            <label class="block text-sm font-semibold mb-1 text-gray-700">Description</label>
+            <textarea [(ngModel)]="editingProduct.itemNo" name="description" rows="3"
+              class="w-full border rounded-md px-3 py-2 text-gray-700 focus:outline-none focus:ring-2 focus:ring-amber-700"></textarea>
+          </div>
+  
+          <div>
+            <label class="block text-sm font-semibold mb-1 text-gray-700">Image URL</label>
+            <input type="text" [(ngModel)]="editingProduct.imageUrl" name="image_url"
+              class="w-full border rounded-md px-3 py-2 text-gray-700 focus:outline-none focus:ring-2 focus:ring-amber-700">
+          </div>
+  
+          <div class="flex items-center space-x-6 pt-4">
+            <!-- <label class="flex items-center space-x-2">
+              <input type="checkbox" [(ngModel)]="editingProduct.available" name="available"
+                class="accent-amber-700">
+              <span class="text-sm text-gray-700 font-medium">Available</span>
+            </label> -->
+  
+            <!-- <label class="flex items-center space-x-2">
+              <input type="checkbox" [(ngModel)]="editingProduct.featured" name="featured"
+                class="accent-amber-700">
+              <span class="text-sm text-gray-700 font-medium">Featured</span>
+            </label> -->
+          </div>
+  
+          <div class="flex justify-end space-x-4">
+            <button type="button" (click)="cancelEdit()" class="px-4 py-2 rounded-md border border-amber-700 text-amber-700 hover:bg-amber-100 font-semibold">
+              Cancel
+            </button>
+            <button type="submit" class="px-4 py-2 rounded-md bg-amber-700 text-white hover:bg-amber-800 font-semibold">
+              {{ isEditing ? 'Update' : 'Save' }}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  

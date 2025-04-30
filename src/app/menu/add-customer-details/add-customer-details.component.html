@@ -1,0 +1,118 @@
+<div class="min-h-screen bg-[#faf8f4] p-8">
+  <h1 class="text-4xl font-bold mb-8">Checkout</h1>
+
+  <div class="grid md:grid-cols-3 gap-8">
+    <!-- Left side - Form -->
+    <div class="md:col-span-2 bg-white rounded-lg shadow p-6">
+      <h2 class="text-2xl font-semibold mb-4">Contact Information</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+        <div>
+          <label class="block font-medium mb-1">Name</label>
+          <input
+            [(ngModel)]="customer.name"
+            name="name"
+            type="text"
+            class="w-full border border-gray-300 rounded p-2 bg-[#f9f7f3]"
+          />
+        </div>
+        <div>
+          <label class="block font-medium mb-1">Phone (optional)</label>
+          <input
+            [(ngModel)]="customer.phone"
+            name="phone"
+            type="text"
+            class="w-full border border-gray-300 rounded p-2 bg-[#f9f7f3]"
+          />
+        </div>
+      </div>
+
+      <div class="mb-6">
+        <label class="block font-medium mb-1">Email</label>
+        <input
+          [(ngModel)]="customer.email"
+          name="email"
+          type="email"
+          class="w-full border border-gray-300 rounded p-2 bg-[#f9f7f3]"
+        />
+      </div>
+
+      <h2 class="text-2xl font-semibold mb-4">Delivery Information</h2>
+
+      <div class="mb-6">
+        <label class="block font-medium mb-1">Delivery Address</label>
+        <textarea
+          [(ngModel)]="customer.address"
+          name="address"
+          class="w-full border border-gray-300 rounded p-2 bg-[#f9f7f3]"
+          rows="3"
+        ></textarea>
+      </div>
+
+      <div class="mb-6">
+        <label class="block font-medium mb-1">Order Notes (optional)</label>
+        <textarea
+          [(ngModel)]="customer.notes"
+          name="notes"
+          class="w-full border border-gray-300 rounded p-2 bg-[#f9f7f3]"
+          rows="3"
+          placeholder="Special instructions for your order..."
+        ></textarea>
+      </div>
+
+      <div class="flex items-start mb-6">
+        <input
+          
+          name="subscribe"
+          type="checkbox"
+          class="mt-1 mr-2"
+        />
+        <div class="text-sm text-gray-700">
+          Subscribe to newsletter
+          <div class="text-gray-500 text-xs">
+            Get exclusive offers and updates from our cafe
+          </div>
+        </div>
+      </div>
+
+      <button
+        (click)="completeOrder()"
+        class="w-full bg-[#8B4513] hover:bg-[#6c3610] text-white py-3 rounded-lg text-lg font-semibold"
+      >
+        Complete Order
+      </button>
+    </div>
+
+    <!-- Right side - Summary -->
+    <div class="bg-white rounded-lg shadow p-6">
+      <h2 class="text-2xl font-semibold mb-4">Order Summary</h2>
+
+      <div class="space-y-2">
+        <div class="flex justify-between">
+          <span>Items</span>
+          <span>{{ getTotalItems() }}</span>
+        </div>
+        <div class="flex justify-between">
+          <span>Subtotal</span>
+          <span>\${{ getSubtotal().toFixed(2) }}</span>
+        </div>
+        <div class="flex justify-between">
+          <span>Tax (10%)</span>
+          <span>\${{ getTax().toFixed(2) }}</span>
+        </div>
+      </div>
+
+      <div class="flex justify-between font-bold text-lg mt-4 border-t pt-4">
+        <span>Total</span>
+        <span>\${{ getTotal().toFixed(2) }}</span>
+      </div>
+
+      <button
+        (click)="completeOrder()"
+        class="w-full mt-6 bg-[#8B4513] hover:bg-[#6c3610] text-white py-3 rounded-lg text-lg font-semibold"
+      >
+        Proceed to Checkout
+      </button>
+    </div>
+  </div>
+</div>
