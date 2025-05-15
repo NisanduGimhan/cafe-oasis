@@ -1,69 +1,67 @@
-
-<!-- order-confirmation.component.html -->
 <div class="flex flex-col items-center justify-center max-w-2xl mx-auto p-6">
-    <!-- Check Icon -->
-    <div class="bg-green-100 rounded-full p-4 mb-6">
-      <svg class="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-      </svg>
-    </div>
-    
-    <!-- Confirmation Header -->
-    <h1 class="text-4xl font-bold text-brown-800 mb-2">Order Confirmed!</h1>
-    <p class="text-lg mb-1">Thank you for your order</p>
-    <p class="text-gray-600 mb-8">Your order has been placed and is being processed.</p>
-    
-    <!-- Next Steps Card -->
-    <div class="w-full bg-white border border-gray-200 rounded-lg p-6 mb-8">
-      <h2 class="text-xl font-semibold text-center mb-6">What happens next?</h2>
-      
-      <!-- Step 1 -->
-      <div class="flex items-start mb-4">
-        <div class="flex-shrink-0 bg-yellow-50 text-gray-600 rounded-full w-8 h-8 flex items-center justify-center mr-4">
-          1
-        </div>
-        <div>
-          <h3 class="font-semibold text-gray-800">Order Processing</h3>
-          <p class="text-gray-600">Our team is preparing your order for pickup or delivery.</p>
-        </div>
+ 
+  <div class="bg-green-100 rounded-full p-4 mb-6">
+    <svg class="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+    </svg>
+  </div>
+
+  
+  <h1 class="text-4xl font-bold text-brown-800 mb-2">Order Confirmed!</h1>
+  <p class="text-lg mb-1">Thank you for your order</p>
+  <p *ngIf="orderId" class="mt-2 text-sm text-gray-600">Your Order ID: <strong>{{ orderId }}</strong></p>
+  <p class="text-gray-600 mb-2">Your order has been placed and is being processed.</p>
+
+  
+  <p class="text-sm text-green-600 mb-8">📬 Check your email – we’ve sent your order confirmation there!</p>
+
+ 
+  <div class="w-full bg-white border border-gray-200 rounded-lg p-6 mb-8">
+    <h2 class="text-xl font-semibold text-center mb-6">What happens next?</h2>
+
+ 
+    <div class="flex items-start mb-4">
+      <div class="flex-shrink-0 bg-yellow-50 text-gray-600 rounded-full w-8 h-8 flex items-center justify-center mr-4">
+        1
       </div>
-      
-      <!-- Step 2 -->
-      <div class="flex items-start mb-4">
-        <div class="flex-shrink-0 bg-yellow-50 text-gray-600 rounded-full w-8 h-8 flex items-center justify-center mr-4">
-          2
-        </div>
-        <div>
-          <h3 class="font-semibold text-gray-800">Order Ready</h3>
-          <p class="text-gray-600">You'll receive a notification when your order is ready.</p>
-        </div>
-      </div>
-      
-      <!-- Step 3 -->
-      <div class="flex items-start">
-        <div class="flex-shrink-0 bg-yellow-50 text-gray-600 rounded-full w-8 h-8 flex items-center justify-center mr-4">
-          3
-        </div>
-        <div>
-          <h3 class="font-semibold text-gray-800">Enjoy!</h3>
-          <p class="text-gray-600">Savor your delicious coffee and treats from .</p>
-        </div>
+      <div>
+        <h3 class="font-semibold text-gray-800">Order Processing</h3>
+        <p class="text-gray-600">Our team is preparing your order for pickup or delivery.</p>
       </div>
     </div>
-    
-    <!-- Action Buttons -->
-    <div class="flex gap-4">
-      <button 
-      (click)="returnToHome()" 
+ 
+    <div class="flex items-start mb-4">
+      <div class="flex-shrink-0 bg-yellow-50 text-gray-600 rounded-full w-8 h-8 flex items-center justify-center mr-4">
+        2
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-800">Order Ready</h3>
+        <p class="text-gray-600">You'll receive a notification when your order is ready.</p>
+      </div>
+    </div>
+
+  
+    <div class="flex items-start">
+      <div class="flex-shrink-0 bg-yellow-50 text-gray-600 rounded-full w-8 h-8 flex items-center justify-center mr-4">
+        3
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-800">Enjoy!</h3>
+        <p class="text-gray-600">Savor your delicious coffee and treats.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex gap-4">
+    <button (click)="returnToHome()"
       class="bg-white hover:bg-[#f3efed] text-[#6F4E37] border border-[#6F4E37] font-semibold py-2 px-4 rounded">
       Return to Home
     </button>
-    
-    <button 
-      (click)="orderMore()" 
+
+    <button (click)="orderMore()"
       class="bg-white hover:bg-[#f3efed] text-[#6F4E37] border border-[#6F4E37] font-semibold py-2 px-4 rounded">
       Order More
     </button>
-    
-    </div>
   </div>
+</div>

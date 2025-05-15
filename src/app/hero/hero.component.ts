@@ -1,12 +1,27 @@
-import { Component } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { MenuService } from '../service/menu.service';
+import { RouterLink, RouterModule, RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-hero',
-  imports: [RouterLink,RouterOutlet],
   templateUrl: './hero.component.html',
-  styleUrl: './hero.component.css'
+  imports: [CommonModule,  RouterOutlet, RouterModule, RouterLink, HeroComponent],
+  styleUrls: ['./hero.component.css']
 })
-export class HeroComponent {
+export class HeroComponent implements OnInit {
+  topMenuItems: any[] = [];
 
+  constructor(private menuService: MenuService) {}
+
+  ngOnInit(): void {
+    this.menuService.getAllItems().subscribe({
+      next: (items) => {
+        this.topMenuItems = items.slice(0, 3); 
+      },
+      error: (err) => {
+        console.error('Failed to load menu items', err);
+      }
+    });
+  }
 }

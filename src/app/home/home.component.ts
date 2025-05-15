@@ -21,6 +21,7 @@ export class HomeComponent {
       url: 'https://t3.ftcdn.net/jpg/03/06/80/94/240_F_306809419_sOgtjPElK8HXux07VJeMWfsIPpQqcuiK.jpg',
       title: 'Brewed to Perfection',
       description: 'Enjoy your favorite blends made with love.'
+      
     },
     {
       url: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93',
@@ -34,6 +35,6 @@ export class HomeComponent {
   ngOnInit(): void {
     setInterval(() => {
       this.currentIndex = (this.currentIndex + 1) % this.images.length;
-    }, 4000); // Change image every 4 seconds
+    }, 2000); 
   }
 }

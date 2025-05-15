@@ -2,7 +2,7 @@
   <h1 class="text-4xl font-bold mb-8">Checkout</h1>
 
   <div class="grid md:grid-cols-3 gap-8">
-    <!-- Left side - Form -->
+   
     <div class="md:col-span-2 bg-white rounded-lg shadow p-6">
       <h2 class="text-2xl font-semibold mb-4">Contact Information</h2>
 
@@ -83,7 +83,7 @@
       </button>
     </div>
 
-    <!-- Right side - Summary -->
+   
     <div class="bg-white rounded-lg shadow p-6">
       <h2 class="text-2xl font-semibold mb-4">Order Summary</h2>
 
@@ -94,17 +94,17 @@
         </div>
         <div class="flex justify-between">
           <span>Subtotal</span>
-          <span>\${{ getSubtotal().toFixed(2) }}</span>
+          <span>Rs{{ getSubtotal().toFixed(2) }}</span>
         </div>
         <div class="flex justify-between">
-          <span>Tax (10%)</span>
-          <span>\${{ getTax().toFixed(2) }}</span>
+          <span>Tax (2%)</span>
+          <span>Rs{{ getTax().toFixed(2) }}</span>
         </div>
       </div>
 
       <div class="flex justify-between font-bold text-lg mt-4 border-t pt-4">
         <span>Total</span>
-        <span>\${{ getTotal().toFixed(2) }}</span>
+        <span>Rs{{ getTotal().toFixed(2) }}</span>
       </div>
 
       <button

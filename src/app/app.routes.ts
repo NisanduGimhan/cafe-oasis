@@ -11,11 +11,12 @@ import { RegisterComponent } from './user/register/register.component';
 import { AddCustomerDetailsComponent } from './menu/add-customer-details/add-customer-details.component';
 import { CartComponent } from './menu/cart/cart.component';
 import { OrderConfirmationComponent } from './menu/order-confirmation/order-confirmation.component';
-import { ProductCardComponent } from './menu/product-card/product-card.component';
+
 import { ContatctComponent } from './contatct/contatct.component';
 import { OrdersComponent } from './admin/orders/orders.component';
 import { ProductsComponent } from './admin/products/products.component';
 import { UserComponent } from './admin/user/user.component';
+
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -28,28 +29,24 @@ export const routes: Routes = [
   { path: 'hero', component: HeroComponent },
   { path: 'contact', component: ContatctComponent },
   
-  // user
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-
-  // menu
+ 
   { path: 'addCustomerdetails', component: AddCustomerDetailsComponent },
   { path: 'cart', component: CartComponent },
   { path: 'orderconfirmation', component: OrderConfirmationComponent },
-  { path: 'product-card', component: ProductCardComponent },
-
-  // admin
+  
   { 
     path: 'admin', 
-    component: AdminNavbarComponent, // your admin page with navbar
+    component: AdminNavbarComponent, 
     children: [
+      { path: '', redirectTo: 'product', pathMatch: 'full' }, 
       { path: 'orders', component: OrdersComponent },
-      { path: 'product', component: ProductsComponent },
       { path: 'user', component: UserComponent },
-      // later you can add more like products, subscribed users etc...
+      { path: 'product', component: ProductsComponent },
+      
     ]
   },
 
-  // catch-all
   { path: '**', redirectTo: '/home' }
 ];

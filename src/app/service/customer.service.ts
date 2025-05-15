@@ -5,16 +5,16 @@ import { Observable } from 'rxjs';
 @Injectable({ providedIn: 'root' })
 export class CustomerService {
 
-  private baseUrl = 'http://localhost:8080/customer'; // your backend URL
+  private baseUrl = 'http://localhost:8080/customer'; 
 
   constructor(private http: HttpClient) { }
 
   addCustomer(customerData: any): Observable<any> {
-    const token = localStorage.getItem('token'); // same as your MenuComponent
+    const token = localStorage.getItem('token'); 
 
     if (!token) {
       console.error('No token found!');
-      return new Observable(); // or throw error properly
+      return new Observable(); 
     }
 
     const headers = new HttpHeaders({

@@ -1,34 +1,46 @@
-<div class="max-w-7xl mx-auto px-4 py-8"> 
-  <div class="flex flex-wrap gap-2 justify-center mb-8">
-    <button (click)="filterByCategory('All')" class="bg-orange-100 hover:bg-orange-200 text-sm px-4 py-1 rounded-full">All Products</button>
-    <button (click)="filterByCategory('Coffee')" class="bg-gray-100 hover:bg-gray-200 text-sm px-4 py-1 rounded-full">Coffee</button>
-    <button (click)="filterByCategory('Food')" class="bg-gray-100 hover:bg-gray-200 text-sm px-4 py-1 rounded-full">Food</button>
-    <button (click)="filterByCategory('Dessert')" class="bg-gray-100 hover:bg-gray-200 text-sm px-4 py-1 rounded-full">Dessert</button>
-    <button (click)="filterByCategory('Merchandise')" class="bg-gray-100 hover:bg-gray-200 text-sm px-4 py-1 rounded-full">Merchandise</button>
-  </div>
+<div class="max-w-7xl mx-auto px-4 py-8">
 
-  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-    <!-- 🔥 Dynamic Product Card Loop -->
-   <!-- 🔥 Dynamic Product Card Loop -->
-<div *ngFor="let item of filteredItems" class="border rounded-lg p-4 hover:shadow-lg transition">
-  
-  <img [src]="item.imageUrl" alt="{{item.name}}" class="w-full h-48 object-cover rounded mb-2">
-  
-  <p class="text-xs text-gray-500 mb-1 uppercase">{{ item.itemtype }}</p>
-  
-  <h3 class="font-semibold text-lg">{{ item.name }}</h3>
-  
-  <p class="text-sm text-gray-600 mt-1">{{ item.description }}</p>
-  
-  <div class="mt-4 flex items-center justify-between">
-    <span class="font-bold">Rs{{ item.price }}</span>
-    
+  <div class="flex flex-wrap gap-2 justify-center mb-8">
     <button 
-      (click)="addToCart(item)" 
-      class="text-sm px-3 py-1 bg-orange-600 text-white rounded hover:bg-orange-700">
-      🛒 Add
+      *ngFor="let category of uniqueCategories" 
+      (click)="filterByCategory(category)"
+      [ngClass]="{
+        'bg-orange-500 text-white': selectedCategory === category,
+        'bg-gray-100 text-gray-800 hover:bg-gray-200': selectedCategory !== category
+      }"
+      class="text-sm px-4 py-1 rounded-full transition-colors duration-300"
+    >
+      {{ category }}
     </button>
   </div>
 
-</div>
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
 
+    <div *ngFor="let item of filteredItems" class="border rounded-lg p-4 hover:shadow-lg transition">
+      
+      <img [src]="item.imageUrl" alt="{{ item.name }}" class="w-full h-48 object-cover rounded mb-2">
+      
+      <p class="text-xs text-gray-500 mb-1 uppercase">{{ item.itemType }}</p>
+      
+      <h3 class="font-semibold text-lg">{{ item.name }}</h3>
+      
+      <p class="text-sm text-gray-600 mt-1">{{ item.description }}</p>
+      
+      <div class="mt-4 flex items-center justify-between">
+        <span class="font-bold">Rs {{ item.price }}</span>
+        
+        <button 
+          (click)="addToCart(item)" 
+          class="text-sm px-3 py-1 bg-orange-600 text-white rounded hover:bg-orange-700">
+          🛒 Add
+        </button>
+      </div>
+
+    </div>
+
+    <div *ngIf="filteredItems.length === 0" class="col-span-full text-center text-gray-500">
+      No items found for this category.
+    </div>
+
+  </div>
+</div>

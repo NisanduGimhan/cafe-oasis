@@ -37,17 +37,21 @@ export class CartComponent {
   }
   increaseQuantity(index: number) {
     this.cartItems[index].quantity++;
+     this.cartService.updateItemCount();
   }
 
   decreaseQuantity(index: number) {
     if (this.cartItems[index].quantity > 1) {
       this.cartItems[index].quantity--;
+    this.cartService.updateItemCount();
     }
   }
 
-  removeItem(index: number) {
-    this.cartItems.splice(index, 1);
-  }
+removeItem(index: number) {
+  this.cartService.removeItem(index); 
+  this.cartItems = this.cartService.getCartItems(); 
+}
+
 
   getTotalItems(): number {
     return this.cartItems.reduce((total, item) => total + item.quantity, 0);
@@ -58,7 +62,7 @@ export class CartComponent {
   }
 
   getTax(): number {
-    return this.getSubtotal() * 0.10;
+    return this.getSubtotal() * 0.02;
   }
 
   getTotal(): number {

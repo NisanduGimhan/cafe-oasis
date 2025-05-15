@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router, RouterLink, RouterModule, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-order-confirmation',
@@ -9,13 +9,18 @@ import { Router, RouterLink, RouterModule, RouterOutlet } from '@angular/router'
   templateUrl: './order-confirmation.component.html',
   styleUrl: './order-confirmation.component.css'
 })
-export class OrderConfirmationComponent {
+export class OrderConfirmationComponent implements OnInit{
+   orderId: string | null = null;
+  constructor(private router: Router,private route: ActivatedRoute) {}
 
-  constructor(private router: Router) {}
+  ngOnInit(): void {
+     this.route.queryParams.subscribe(params => {
+      this.orderId = params['orderId'];
+    });
+  }
 
   returnToHome() {
    
-    // Navigate to home page
     this.router.navigate(['home']);
   }
   

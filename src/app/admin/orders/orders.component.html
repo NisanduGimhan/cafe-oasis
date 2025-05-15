@@ -1,5 +1,42 @@
-<p>orders works!</p>
-<h1>555555</h1>
-<h1>555555</h1>
-<h1>555555</h1>
-<h1>555555</h1>
+<div class="p-6 max-w-7xl mx-auto">
+  <h2 class="text-3xl font-semibold text-gray-800 mb-6">Order List</h2>
+
+
+  <div class="mb-4 flex items-center space-x-2">
+    <label for="search" class="text-gray-600">Search by Order No:</label>
+    <input
+      id="search"
+      type="text"
+      [(ngModel)]="searchTerm"
+      (ngModelChange)="searchOrders()"
+      placeholder="Enter order number"
+      class="w-full sm:w-64 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+    />
+  </div>
+
+
+  <div class="overflow-x-auto bg-white shadow-lg rounded-lg">
+    <table class="min-w-full table-auto">
+      <thead class="bg-gray-100">
+        <tr>
+          <th class="px-6 py-3 text-left text-sm font-medium text-gray-600">Order No</th>
+          <th class="px-6 py-3 text-left text-sm font-medium text-gray-600">Name</th>
+          <th class="px-6 py-3 text-left text-sm font-medium text-gray-600">Phone</th>
+          <th class="px-6 py-3 text-left text-sm font-medium text-gray-600">Total</th>
+          <th class="px-6 py-3 text-left text-sm font-medium text-gray-600">Date</th>
+          <th class="px-6 py-3 text-left text-sm font-medium text-gray-600">Note</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-200">
+        <tr *ngFor="let order of filteredOrders">
+          <td class="px-6 py-4 text-sm text-gray-800">{{ order.orderNo }}</td>
+          <td class="px-6 py-4 text-sm text-gray-800">{{ order.name }}</td>
+          <td class="px-6 py-4 text-sm text-gray-800">{{ order.phone }}</td>
+          <td class="px-6 py-4 text-sm text-gray-800">{{ order.totalPrice }}</td>
+          <td class="px-6 py-4 text-sm text-gray-800">{{ order.date | date }}</td>
+          <td class="px-6 py-4 text-sm text-gray-800">{{ order.orderNote }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

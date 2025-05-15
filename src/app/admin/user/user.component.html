@@ -1,1 +1,55 @@
-<p>user works!</p>
+<div class="p-6">
+  <h2 class="text-2xl font-bold mb-4">Customer List</h2>
+
+  <div class="mb-4 flex items-center space-x-2">
+    <label for="search" class="text-gray-600">Search by Email:</label>
+    <input
+      id="search"
+      type="text"
+      [(ngModel)]="searchEmail" 
+      (input)="onSearchInput()"
+      placeholder="Enter Customer Email"
+      class="w-full sm:w-64 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+    />
+  </div>
+
+
+  <div *ngIf="isLoading" class="p-4 text-center text-blue-500">
+    Loading customers...
+  </div>
+
+  <div *ngIf="errorMessage" class="p-4 bg-red-100 text-red-700 rounded mb-4">
+    {{ errorMessage }}
+  </div>
+
+
+  <div *ngIf="!isLoading && !errorMessage">
+    <div class="overflow-x-auto rounded-lg shadow">
+      <table class="min-w-full bg-white">
+        <thead class="bg-gray-50">
+          <tr>
+            <th class="py-3 px-4 text-left font-medium text-gray-700">ID</th>
+            <th class="py-3 px-4 text-left font-medium text-gray-700">Name</th>
+            <th class="py-3 px-4 text-left font-medium text-gray-700">Email</th>
+            <th class="py-3 px-4 text-left font-medium text-gray-700">Phone</th>
+            <th class="py-3 px-4 text-left font-medium text-gray-700">Address</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200">
+          <tr *ngFor="let customer of filteredCustomers" class="hover:bg-gray-50 transition-colors">
+            <td class="py-3 px-4">{{ customer.id }}</td>
+            <td class="py-3 px-4">{{ customer.name }}</td>
+            <td class="py-3 px-4">{{ customer.email }}</td>
+            <td class="py-3 px-4">{{ customer.phone }}</td>
+            <td class="py-3 px-4">{{ customer.address }}</td>
+          </tr>
+          <tr *ngIf="filteredCustomers.length === 0">
+            <td colspan="5" class="py-4 px-4 text-center text-gray-500">
+              No customers found matching "{{ searchEmail }}"
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
